@@ -1,6 +1,7 @@
 <script setup>
 import Web3 from 'web3';
 import { ref } from 'vue';
+import Tx from 'ethereumjs-tx';
 //实例化web3
 var web3 = new Web3(Web3.givenProvider || "wss://goerli.infura.io/ws/v3/0fda17b26c574dca81d0069f6150ffe8");
 
@@ -27,11 +28,11 @@ const transaction = async () => {
     //获取账户交易次数  记录该账户的交易次数
     const nonce = await web3.eth.getTransactionCount(address.value);
 
-    //获取预计转账的gas费用
+    //获取预计转账的gas单价
     const gasPrice = await web3.eth.getGasPrice();
 
     //转账金额 以wei作为单位
-    const value = web3.utils.toWei('0.01', 'ether');
+    const value = web3.utils.toWei('0.001', 'ether');
     console.log(value);
 
     //定义交易包数据
@@ -47,7 +48,33 @@ const transaction = async () => {
     //2. 生成serializedTx 
 
     //转化私钥
-    const sss = Buffer(privateKey.value.slice(2), "hex");
+    const bufferKey = Buffer(privateKey.value.slice(2), "hex");
+    //gas估算
+    const gas = await web3.eth.estimateGas(rawTx);  //这里由于账户里面没有余额来支付预计的转账费用以及gas的费用 这段代码会报错
+    rawTx.gas = gas;
+    // ethereumjs-tx 实现加密
+    const tx = new Tx(rawTx);
+    tx.sign(bufferKey);
+    // 生成 serializedTx 用来传输
+    const serializedTx = `0x${tx.serialize().toString("hex")}`;
+    
+    //3. 开始转账
+    const trans = web3.eth.sendSignedTransaction(serializedTx);
+    //交易结束后触发 看交易的情况
+    trans.on("transactionHash", (txid) => {
+        console.log("交易ID：", txid);
+        console.log(`https://sepolia.etherscan.io/tx/${txid}`);
+    });
+    //第一个节点确认时触发 
+    trans.on("receipt", (res) => {
+        console.log("第一个节点确认",res);
+    });
+    // 有节点确认触发
+    trans.on("confirmation",() => {
+        console.log("有节点确认");
+    });
+    
+    
 };
 </script>
 
