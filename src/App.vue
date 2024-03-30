@@ -1,17 +1,18 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+<h1>Hello World</h1>
+<van-button color="linear-gradient(to right, #ff6034, #ee0a24)">
+  欢迎来到我的钱包
+</van-button>
+<Suspense>
+  <Web3Api></Web3Api>
+</Suspense>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+<script setup>
+import Web3 from 'web3';
+import Web3Api from './components/Web3Api.vue';
+//实例化web3
+var web3 = new Web3(Web3.givenProvider || "wss://goerli.infura.io/ws/v3/0fda17b26c574dca81d0069f6150ffe8");
 </script>
 
 <style lang="less">
@@ -22,5 +23,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+h1 {
+  color: red;
 }
 </style>
