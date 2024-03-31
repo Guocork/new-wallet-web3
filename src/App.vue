@@ -3,14 +3,16 @@
 <van-button color="linear-gradient(to right, #ff6034, #ee0a24)">
   欢迎来到我的钱包
 </van-button>
-<Suspense>
+<!-- <Suspense>
   <Web3Api></Web3Api>
-</Suspense>
+</Suspense> -->
+<AccountSys></AccountSys>
 </template>
 
 <script setup>
 import Web3 from 'web3';
 import Web3Api from './components/Web3Api.vue';
+import AccountSys from './components/AccountSys.vue';
 //实例化web3
 var web3 = new Web3(Web3.givenProvider || "wss://goerli.infura.io/ws/v3/0fda17b26c574dca81d0069f6150ffe8");
 </script>
