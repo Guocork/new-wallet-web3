@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import * as bip39 from "bip39";
-import { hdkey,fromV3 } from 'ethereumjs-wallet';
+import ethwallet, { hdkey } from 'ethereumjs-wallet';
 import Web3 from 'web3';
 
 
@@ -31,8 +31,10 @@ bip39.mnemonicToSeed(mnemonic.value).then((seed) => {
     //导出keyStore
     //1. web3.js
     var web3 = new Web3(Web3.givenProvider || "wss://goerli.infura.io/ws/v3/0fda17b26c574dca81d0069f6150ffe8");
-    // const keyStore = web3.eth.accounts.encrypt(priKey,"111111");
-    // console.log(JSON.stringify(keyStore));
+    const keyStore = web3.eth.accounts.encrypt("0x63d94929d62deb5a3314b43669471f478d7c18db8491de7253969b21a3db1703","111111");
+    keyStore.then((res) => {
+        console.log(JSON.stringify(res));
+    })
 
     //wallet对象
     wallet.toV3("111111").then((res) => {
@@ -42,8 +44,14 @@ bip39.mnemonicToSeed(mnemonic.value).then((seed) => {
         //1. web3
         console.log(web3.eth.accounts.decrypt(res,"111111"));
         //2. wallet
-        console.log(fromV3(res,"111111"));
+        console.log(ethwallet.fromV3(res,"111111"));
     });
+
+    //通过私钥获取地址
+    const priKey2 = Buffer(priKey,"hex");
+    const wallet3 = ethwallet.fromPrivateKey(priKey2);
+    const address1 = wallet3.getAddressString();
+    console.log(address1);
 })
 
 
