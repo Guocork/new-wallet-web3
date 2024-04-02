@@ -10,8 +10,8 @@ module.exports = defineConfig({
   transpileDependencies: true,
   configureWebpack: {
     plugins: [
-      AutoImport.default({ resolvers: [VantResolver()] }),
-      Components.default({ resolvers: [VantResolver()] }),
+      // AutoImport.default({ resolvers: [VantResolver()] }),
+      // Components.default({ resolvers: [VantResolver()] }),
       new NodePolyfillPlugin(),
       new webpack.DefinePlugin({
         __VUE_OPTIONS_API__: JSON.stringify(true),
