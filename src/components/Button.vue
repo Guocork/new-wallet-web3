@@ -14,6 +14,7 @@ const showMn = ref(false);
 const showCase = ref(false);
 
 const creatwallet = () => {
+  password.value = "";
   show.value = true;
 };
 
@@ -71,13 +72,16 @@ const confirmMnemonic = async () => {
         keyStore,
         mnemonic: mnemonic.value,
         balance: 0,
+        password: password.value
       },
     ];
 
     store("walletInfo", walletInfo);
+    showSuccessToast('创建成功');
   } else {
     showFailToast("助记词有误!");
     backMnemonic();
+    MnemonicValue.value = "";
   }
 };
 
@@ -117,6 +121,7 @@ const creatNewAddress = async () => {
         keyStore,
         mnemonic: mnemonic.value,
         balance: 0,
+        password: password.value
       };
 
       walletInfo.push(walletInfoObj);
