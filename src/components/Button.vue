@@ -24,9 +24,8 @@ const confirmPassword = () => {
     //判断是否创建过账户 目前只运行创建一次
     const walletInfo = store.get("walletInfo");
     if (walletInfo) {
-      showSuccessToast('您已经创建过账户');
-      mnemonic.value = walletInfo[0]["mnemonic"];
-      console.log(mnemonic.value);
+      creatNewAddress()
+      showSuccessToast('创建成功');
     } else {
     mnemonic.value = bip39.generateMnemonic();
     showMn.value = true;
@@ -85,6 +84,43 @@ const confirmMnemonic = async () => {
 const backMnemonic = () => {
   showCase.value = false;
   showMn.value = true;
+};
+
+const creatNewAddress = async () => {
+  const walletInfo = store.get("walletInfo");
+
+  mnemonic.value = walletInfo[0]["mnemonic"];
+
+  const seed = await bip39.mnemonicToSeed(mnemonic.value);
+
+  const hdWallet = hdkey.fromMasterSeed(seed);
+
+  const storeWallet = store.get("walletInfo")
+
+  const addressIndex = storeWallet.length;
+
+  const keyPair = hdWallet.derivePath(`m/44'/60'/0'/0/${addressIndex}`);
+
+  const wallet = keyPair.getWallet();
+
+  const accountAddress = wallet.getAddressString();
+
+  const privateKey = wallet.getPrivateKey().toString("hex");
+
+  const keyStore = await wallet.toV3(password.value);
+
+  const walletInfoObj = 
+      {
+        id:addressIndex,
+        address: accountAddress,
+        privateKey,
+        keyStore,
+        mnemonic: mnemonic.value,
+        balance: 0,
+      };
+
+      walletInfo.push(walletInfoObj);
+      store("walletInfo", walletInfo);
 };
 </script>
 
