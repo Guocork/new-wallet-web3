@@ -13,10 +13,25 @@ onMounted(() => {
 </script>
 
 <template>
-<Button></Button>
+<div class="container1">
+  <img src="@/assets/logo1.png" alt="">
+</div>
+<div class="container2">
+  <Button></Button>
+</div>
+<div>
 <AccountList :walletInfo="walletInfo"></AccountList>
+</div>
 </template>
 
 <style scoped>
-
+.container1 {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+.container2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
 </style>

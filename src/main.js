@@ -5,8 +5,16 @@ import App from './App.vue'
 import Vant from 'vant';
 import 'vant/lib/index.css';
 import router from './router'
+import 'vuetify/styles'
+import { createVuetify } from 'vuetify'
+import * as components from 'vuetify/components'
+import * as directives from 'vuetify/directives'
 
-
+const vuetify = createVuetify({
+    components,
+    directives,
+  })
+  
 
 const app = createApp(App);
-app.use(Vant).use(router).mount('#app')
+app.use(Vant).use(router).use(vuetify).mount('#app')

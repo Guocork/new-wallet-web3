@@ -66,7 +66,7 @@ const confirmSend = () => {
   <div>
     <van-cell
       :title="item.address"
-      icon="user-o"
+      icon="location"
       v-for="item in walletInfoAddressFilter"
     >
       <!-- 使用 right-icon 插槽来自定义右侧图标 -->
@@ -80,6 +80,7 @@ const confirmSend = () => {
       </template>
     </van-cell>
   </div>
+  
   <van-dialog
     v-model:show="show"
     title="验证密码"

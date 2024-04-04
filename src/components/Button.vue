@@ -131,8 +131,8 @@ const creatNewAddress = async () => {
 
 <template>
   <van-space>
-    <van-button type="primary" @click="creatwallet">创建钱包</van-button>
-    <van-button type="primary">导入钱包</van-button>
+    <van-button type="primary" @click="creatwallet" color="linear-gradient(to right, rgb(253, 200, 48), rgb(243, 115, 53)">创建账户</van-button>
+    <van-button type="primary" color="linear-gradient(to right, rgb(253, 200, 48), rgb(243, 115, 53)">导入地址</van-button>
     <van-dialog
       v-model:show="show"
       title="创建账户"
