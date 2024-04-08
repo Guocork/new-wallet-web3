@@ -18,3 +18,7 @@ const vuetify = createVuetify({
 
 const app = createApp(App);
 app.use(Vant).use(router).use(vuetify).mount('#app')
+
+if (typeof window.ethereum !== "undefinedd") {
+  console.log("MetaMask is installed!");
+}
