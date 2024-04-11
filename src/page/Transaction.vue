@@ -1,6 +1,7 @@
 <script setup>
 import Button from '../components/Button.vue'
 import AccountList from '../components/AccountList.vue'
+import Token from "../components/Token.vue"
 import { ref, onMounted } from 'vue';
 import store from 'store2';
 
@@ -18,6 +19,7 @@ onMounted(() => {
 </div>
 <div class="container2">
   <Button></Button>
+  <Token></Token>
 </div>
 <div>
 <AccountList :walletInfo="walletInfo"></AccountList>
