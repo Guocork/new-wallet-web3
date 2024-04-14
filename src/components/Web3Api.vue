@@ -3,7 +3,7 @@ import Web3 from 'web3';
 import { ref } from 'vue';
 import Tx from 'ethereumjs-tx';
 //实例化web3
-var web3 = new Web3(Web3.givenProvider || "wss://goerli.infura.io/ws/v3/0fda17b26c574dca81d0069f6150ffe8");
+var web3 = new Web3(Web3.givenProvider || "wss://sepolia.infura.io/ws/v3/0fda17b26c574dca81d0069f6150ffe8");
 
 //创建账户  注意：这个方法每次执行都会创建新的账号
 // const account = web3.eth.accounts.create("123");

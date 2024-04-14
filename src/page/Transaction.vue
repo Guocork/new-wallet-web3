@@ -19,7 +19,6 @@ onMounted(() => {
 </div>
 <div class="container2">
   <Button></Button>
-  <Token></Token>
 </div>
 <div>
 <AccountList :walletInfo="walletInfo"></AccountList>

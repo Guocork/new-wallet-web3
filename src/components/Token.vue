@@ -5,7 +5,7 @@ import Mytoken from "../contracts/Mytoken.json";
 
 var web3 = new Web3(
   Web3.givenProvider ||
-    "wss://goerli.infura.io/ws/v3/0fda17b26c574dca81d0069f6150ffe8"
+    "wss://sepolia.infura.io/ws/v3/0fda17b26c574dca81d0069f6150ffe8"
 );
 
 const newContract = new web3.eth.Contract(

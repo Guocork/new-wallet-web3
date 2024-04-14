@@ -9,7 +9,7 @@ import Tx from 'ethereumjs-tx';
 
 var web3 = new Web3(
   Web3.givenProvider ||
-    "wss://goerli.infura.io/ws/v3/0fda17b26c574dca81d0069f6150ffe8"
+    "wss://sepolia.infura.io/ws/v3/0fda17b26c574dca81d0069f6150ffe8"
 );
 const show = ref(false);
 const password = ref("");

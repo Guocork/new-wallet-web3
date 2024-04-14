@@ -30,7 +30,7 @@ bip39.mnemonicToSeed(mnemonic.value).then((seed) => {
 
     //导出keyStore
     //1. web3.js
-    var web3 = new Web3(Web3.givenProvider || "wss://goerli.infura.io/ws/v3/0fda17b26c574dca81d0069f6150ffe8");
+    var web3 = new Web3(Web3.givenProvider || "wss://sepolia.infura.io/ws/v3/0fda17b26c574dca81d0069f6150ffe8");
     const keyStore = web3.eth.accounts.encrypt("0x63d94929d62deb5a3314b43669471f478d7c18db8491de7253969b21a3db1703","111111");
     keyStore.then((res) => {
         console.log(JSON.stringify(res));

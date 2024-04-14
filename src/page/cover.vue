@@ -1,16 +1,17 @@
 <script setup>
-const imageUrl = require('@/assets/fengmian.png')
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+const imageUrl = require("@/assets/fengmian.png");
+const jump = () => {
+  router.push("layout");
+};
 </script>
 
 <template>
-<!-- <img :src="imageUrl" alt=""> -->
-<p>hello world!</p>
-<RouterLink to="/layout/HomePage">跳转</RouterLink>
-
+  <img :src="imageUrl" alt="" @click="jump" />
 </template>
 
 <style scoped>
-/* .body {
-    background-image: "@/assets/fengmian.png";
-} */
+
 </style>
